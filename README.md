@@ -5,6 +5,7 @@ This is a Stock Broker System that allows customers to trade and invest in share
 Database Design: 
 
 
+![stockER](https://github.com/ashishk2007/StockManagmentSystem/assets/113036805/94adcf84-3941-4539-a524-47f505db820d)
 
 
 
