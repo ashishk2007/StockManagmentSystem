@@ -1,0 +1,6 @@
+INDEX VERSION 1.131+C:\Users\kaush\OneDrive\Desktop\dainty-knee-9326--master\StockBrokerSystem\src\.metadata\.plugins\org.eclipse.jdt.core
+1008678616.index
+322282053.index
+1865797976.index
+3929396167.index
+1837709116.index

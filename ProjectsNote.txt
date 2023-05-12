@@ -1,0 +1,59 @@
+Database Name: StockBrokerSystem;
+Table Creation Queries:-
+
+CREATE TABLE broker (
+  broker_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE customer (
+  customer_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(50) NOT NULL,
+  address VARCHAR(100),
+  mobile_number VARCHAR(20),
+  email VARCHAR(50) UNIQUE NOT NULL,
+  wallet_balance DECIMAL(12,2) NOT NULL DEFAULT 0,
+  is_active TINYINT(1) NOT NULL DEFAULT 1
+);
+
+CREATE TABLE stock (
+  stock_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL UNIQUE,
+  quantity INT NOT NULL DEFAULT 500,
+  price DECIMAL(12,2) NOT NULL DEFAULT 0,
+  is_deleted TINYINT(1) NOT NULL DEFAULT 0
+);
+
+CREATE TABLE transaction (
+  transaction_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  customer_id INT NOT NULL,
+  stock_id INT NOT NULL,
+  transaction_type ENUM('BUY', 'SELL') NOT NULL,
+  transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  quantity INT NOT NULL,
+  price DECIMAL(12,2) NOT NULL,
+  total_amount DECIMAL(12,2) NOT NULL,
+  FOREIGN KEY (customer_id) REFERENCES customer (customer_id) ON DELETE CASCADE,
+  FOREIGN KEY (stock_id) REFERENCES stock (stock_id) ON DELETE CASCADE
+);
+
+CREATE TABLE mutual_fund (
+  mutual_fund_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL UNIQUE,
+  price DECIMAL(12,2) NOT NULL DEFAULT 0,
+  is_deleted TINYINT(1) NOT NULL DEFAULT 0
+);
+
+CREATE TABLE customer_stock (
+  id INT NOT NULL AUTO_INCREMENT,
+  customer_id INT NOT NULL,
+  stock_id INT NOT NULL,
+  quantity INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (customer_id) REFERENCES customer(id),
+  FOREIGN KEY (stock_id) REFERENCES stock(stock_id)
+);
